@@ -26,7 +26,6 @@ repositories {
 dependencies {
     implementation group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '6.0.0.202111291000-r'
     implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha5'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }

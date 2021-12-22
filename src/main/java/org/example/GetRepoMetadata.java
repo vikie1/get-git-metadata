@@ -41,7 +41,7 @@ public class GetRepoMetadata {
     void basicDetails(Git repo) throws IOException, GitAPIException {
         System.out.println("\n\n\n");
         System.out.println("Repository Size: " + repo.getRepository().getDirectory().length());
-        System.out.println("Repository Last Modified: " + repo.getRepository().getDirectory().lastModified());
+		System.out.println("Repository Last Modified: " + new Date(repo.getRepository().getDirectory().lastModified() * 1000L));
         System.out.println("Repository Head: " + repo.getRepository().getFullBranch());
         GetRepoMetadata metadata = new GetRepoMetadata();
         metadata.getCommits(repo);

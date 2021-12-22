@@ -63,6 +63,7 @@ public class GetRepoMetadata {
                     System.out.println("Author: " + commit.getAuthorIdent().getName());
                     System.out.println("Commit Date: " + new Date(commit.getCommitTime() * 1000L));
                     System.out.println("Full description: " + commit.getFullMessage());
+					System.out.println("\n");
                 }
             }
         } catch(IOException e) {

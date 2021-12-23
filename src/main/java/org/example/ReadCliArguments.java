@@ -12,10 +12,11 @@ public class ReadCliArguments {
     static Options cliOptions(){
         Options options = new Options();
         options.addOption("h", "help", false, "Print this message");
-        Option option = new Option("r", "repo", true, "Name of the repository use `,` to separate multiple repositories");
+        Option option = new Option("r", "repo", true, "URL of the repository use `,` to separate multiple repositories");
         option.setRequired(true);
         option.setArgName("REPO");
         options.addOption(option);
+        options.addOption("v", "verbose", false, "Print the all the details of the repository including the commit dates and messages");
         return options;
     }
     //parse the command line arguments
@@ -26,25 +27,28 @@ public class ReadCliArguments {
             cmd = new DefaultParser().parse(cliOptions(), args);
             if (cmd.hasOption("h")) {
                 formatter.printHelp("Usage: ", options);
-            }
-            if (cmd.hasOption("r")) {
-                String repo = cmd.getOptionValue("r");
-                provideRepositoryName(repo);
+            }if (cmd.hasOption("r")) {
+                provideRepositoryName(cmd.getOptionValue("r"), cmd.hasOption("v"));
             }
         } catch (org.apache.commons.cli.ParseException e) {
             System.out.println(e.getMessage());
-            formatter.printHelp("Provide a repository name", options);
+            formatter.printHelp("Provide a repository URL", options);
             System.exit(0);
         }
         return cmd;
     }
-    void provideRepositoryName(String input){
+    void provideRepositoryName(String input, boolean verbose){
         String[] repoNames = input.split(",");
         for(String repoName: repoNames){
-            System.out.println("Details for:" + repoName);
+            System.out.println("\n\nDetails for: " + repoName);
             GetRepoMetadata metadata = new GetRepoMetadata();
             try {
-                metadata.getMetadata(repoName);
+                if (verbose) {
+                    metadata.getFullMetadata(repoName);;
+                }
+                else {
+                    metadata.getBasicMetadata(repoName);
+                }
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }

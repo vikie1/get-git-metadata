@@ -28,6 +28,7 @@ public class GetRepoMetadata {
         System.out.println("Cloning ...");
         try (Git result = Git.cloneRepository()
                 .setURI(name)
+                .setBranchesToClone(null)
                 .setDirectory(localPath)
                 .setNoCheckout(true)
                 .call()) {
@@ -96,6 +97,7 @@ public class GetRepoMetadata {
         System.out.println("\n");
         System.out.println("---------Commits---------");
         System.out.println("Number of commits: " + numberOfCommits);
+
         //delete the cloned repository
         FileUtils.delete(localPath, FileUtils.RECURSIVE);
     }

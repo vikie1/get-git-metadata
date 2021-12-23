@@ -1,21 +1,7 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.1'
+    id 'application'
 }
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
-}
-
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'org.example.ReadCliArguments'
-        )
-    }
-}
-
 group 'org.example'
 version '1.0'
 
@@ -23,13 +9,15 @@ repositories {
     mavenCentral()
 }
 
+application{
+    mainClass = 'org.example.ReadCliArguments'
+}
+
 dependencies {
     implementation group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '6.0.0.202111291000-r'
     implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha5'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.0-alpha5'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
 test {

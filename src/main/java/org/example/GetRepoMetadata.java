@@ -29,8 +29,10 @@ public class GetRepoMetadata {
         try (Git result = Git.cloneRepository()
                 .setURI(name)
                 .setBranchesToClone(null)
+                .setCloneAllBranches(false)
                 .setDirectory(localPath)
                 .setNoCheckout(true)
+                .setBare(true)
                 .call()) {
            System.out.println("Done.");
         }catch (GitAPIException e) {

@@ -17,8 +17,8 @@ Will be installed by gradle automatically if not already present :
 `$ cd get-git-metadata` <br/>
 
 `$ ./gradlew clean build` for Mac/Unix/Linux<br/>
-`$ .\gradlew clean build` for Windows<br/>
+`$ .\gradlew.bat clean build` for Windows<br/>
 
 # Usage
 `$ ./gradlew run --args="-h"` in Mac/Unix/Linux -> Should print the help message <br/>
-`$ .\gradlew run --args="-h"` in Windows -> Should print the help message <br/> 
+`$ .\gradlew.bat run --args="-h"` in Windows -> Should print the help message <br/> 

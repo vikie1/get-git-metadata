@@ -5,7 +5,6 @@ This tool is used to print out information about a repository given the URL.
 You should have the following installed:
 * [Java](https://www.java.com/) version 8 or later is preferred.
 * [Git](https://git-scm.com/)
-* [Gradle](https://gradle.org/)
 
 # Dependancies
 Will be installed by gradle automatically if not already present :
@@ -17,7 +16,9 @@ Will be installed by gradle automatically if not already present :
 
 `$ cd get-git-metadata` <br/>
 
-`$ gradle clean build` <br/>
+`$ ./gradlew clean build` for Mac/Unix/Linux<br/>
+`$ .\gradlew clean build` for Windows<br/>
 
 # Usage
-`$ gradle run --args="-h"` -> Should print the help message <br/>
+`$ ./gradlew run --args="-h"` in Mac/Unix/Linux -> Should print the help message <br/>
+`$ .\gradlew run --args="-h"` in Windows -> Should print the help message <br/> 

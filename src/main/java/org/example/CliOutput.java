@@ -3,11 +3,8 @@ package org.example;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.Constants;
-import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.revwalk.RevWalk;
 
 import java.io.IOException;
 import java.util.Date;
@@ -17,12 +14,8 @@ import java.util.stream.StreamSupport;
 public class CliOutput {
 
     void getBasicDetails(Git repo) throws IOException, GitAPIException {
-        //ObjectId head = repo.getRepository().resolve(Constants.HEAD);
-        System.out.println("something" + repo.getRepository().resolve(Constants.HEAD));
-//        RevCommit lastCommit = new RevWalk(repo.getRepository()).parseCommit(head);
         System.out.println("\n");
         System.out.println("Repository Size: " + repo.getRepository().getDirectory().length());
-//        System.out.println("Repository Last Modified: " + new Date(lastCommit.getCommitTime()));
         System.out.println("Repository Head: " + repo.getRepository().getFullBranch());
     }
 

@@ -39,19 +39,18 @@ public class GetRepoMetadata {
         return Git.open(localPath);
     }
 
-    void getCommits(Git repo) throws GitAPIException {
+    void getCommitsAndBranches(Git repo) throws GitAPIException {
         List<Ref> branches = repo.branchList().setListMode(ListBranchCommand.ListMode.ALL).call();
         try {
+            //branches
             for(Ref branch : branches) {
-
                 System.out.println("\n\n\n");
                 System.out.println("---------Ref: " + branch.getName() + "---------");
-
-
-                Iterable<RevCommit> commits = repo.log().all().call();
-                for(RevCommit commit : commits) {
-                    print.getCommitDetails(commit);
-                }
+            }
+            //commits
+            Iterable<RevCommit> commits = repo.log().all().call();
+            for(RevCommit commit : commits) {
+                print.getCommitDetails(commit);
             }
         } catch(IOException e) {
             System.err.println("Error: " + e.getMessage());
@@ -70,7 +69,7 @@ public class GetRepoMetadata {
     //For the more verbose option
     void getFullMetadata(String repo) throws IOException, GitAPIException, URISyntaxException {
         Git git = getRepository(repo);
-        getCommits(git);
+        getCommitsAndBranches(git);
         print.getBasicDetails(git);
         getBranchAndCommitBasics(git);
 

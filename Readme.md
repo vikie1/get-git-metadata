@@ -1,5 +1,5 @@
 # Introduction
-This tool is used to print out the metadata of a repository given the URL.
+This tool is used to print out information about a repository given the URL.
 
 # Requirements
 You should have the following installed:
@@ -8,7 +8,7 @@ You should have the following installed:
 * [Gradle](https://gradle.org/)
 
 # Dependancies
-Will be installed automatically if not already present by gradle:
+Will be installed by gradle automatically if not already present :
 * [JGit](https://git-scm.com/book/en/v2/Appendix-B%3A-Embedding-Git-in-your-Applications-JGit)
 * [Appache-commons-cli](https://commons.apache.org/proper/commons-cli/)
 

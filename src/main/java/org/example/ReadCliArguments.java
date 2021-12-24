@@ -33,7 +33,6 @@ public class ReadCliArguments {
         } catch (org.apache.commons.cli.ParseException e) {
             System.out.println(e.getMessage());
             formatter.printHelp("Provide a repository URL", options);
-            System.exit(0);
         }
         return cmd;
     }

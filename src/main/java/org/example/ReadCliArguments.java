@@ -1,6 +1,8 @@
 package org.example;
 
 import org.apache.commons.cli.*;
+import org.example.util.HttpRequest;
+import org.example.util.ParseRepoUrl;
 
 public class ReadCliArguments {
     public static void main(String[] args) {
@@ -46,7 +48,16 @@ public class ReadCliArguments {
                     metadata.getFullMetadata(repoName);;
                 }
                 else {
-                    metadata.getBasicMetadata(repoName);
+                    switch (ParseRepoUrl.getHost(repoName)) {
+                        case "github":
+                            HttpRequest.getGithubCommits(ParseRepoUrl.getCommitApiUrl(repoName));
+                            HttpRequest.getGithubBranches(ParseRepoUrl.getBranchesApiUrl(repoName));
+                            break;
+                            case "unknown":
+                                metadata.getBasicMetadata(repoName);
+                                break;
+                    }
+
                 }
             }catch (Exception e){
                 System.out.println(e.getMessage());

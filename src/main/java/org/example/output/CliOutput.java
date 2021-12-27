@@ -1,4 +1,4 @@
-package org.example;
+package org.example.output;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand;
@@ -13,15 +13,14 @@ import java.util.stream.StreamSupport;
 
 public class CliOutput {
 
-    void getBasicDetails(Git repo) throws IOException, GitAPIException {
+    public void getBasicDetails(Git repo) throws IOException, GitAPIException {
         System.out.println("\n");
         System.out.println("Repository Size: " + repo.getRepository().getDirectory().length());
         System.out.println("Repository Head: " + repo.getRepository().getFullBranch());
     }
 
-    void getBranchDetails(Git repo) throws IOException, GitAPIException {
+    public void getBranchDetails(Git repo) throws IOException, GitAPIException {
         List<Ref> branches = repo.branchList().setListMode(ListBranchCommand.ListMode.ALL).call();
-        System.out.println("\n");
         System.out.println("---------Branches---------");
         System.out.println("Number of branches: " + branches.size());
 
@@ -32,16 +31,15 @@ public class CliOutput {
             count ++;
         }
     }
-    void getNumberOfCommits(Git git) throws IOException, GitAPIException {
+    public void getNumberOfCommits(Git git) throws IOException, GitAPIException {
         Iterable<RevCommit> commits = git.log().all().call();
         long numberOfCommits = StreamSupport.stream(commits.spliterator(), false).count();
-        System.out.println("\n");
         System.out.println("---------Commits---------");
         System.out.println("Number of commits: " + numberOfCommits);
         System.out.println("Last commit time: " + new Date(git.log().all().call().iterator().next().getCommitTime() * 1000L));
     }
 
-    void getCommitDetails(RevCommit commit) {
+    public void getCommitDetails(RevCommit commit) {
         System.out.println("Commits: " + commit.getName());
         System.out.println("Commit Message: " + commit.getShortMessage());
         System.out.println("Author: " + commit.getAuthorIdent().getName());
